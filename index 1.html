@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQUA-AKULA — リンク集</title>
+  <link rel="canonical" href="https://ws-ceo.github.io/aqua-akula/" />
+  <meta property="og:title" content="AQUA-AKULA — リンク集" />
+  <meta property="og:description" content="AQUA-AKULA シリーズ（2000 / V4 / V3 ULTRA / V3 / V2）の公式リンク一覧ページ。" />
+  <meta property="og:url" content="https://ws-ceo.github.io/aqua-akula/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & Noto Sans JP & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #141413;
+      color: #eae8e3;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      letter-spacing: -0.01em;
+    }
+
+    .font-mono-url {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* マットな和紙・紙質風の微細なテクスチャ */
+    .matte-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* マットなリンクカード */
+    .link-card {
+      background-color: #1c1b1a;
+      border: 1px solid #2b2a28;
+      border-radius: 14px;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+      transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .link-card:hover {
+      background-color: #21201e;
+      border-color: #3d3b38;
+      transform: translateY(-1px);
+    }
+
+    /* 最新バージョン用マットアクセントカード */
+    .link-card-latest {
+      background-color: #1f1e1c;
+      border: 1px solid #44403c;
+      border-radius: 14px;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 10px 28px -14px rgba(0, 0, 0, 0.65);
+      transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .link-card-latest:hover {
+      background-color: #242320;
+      border-color: #57534e;
+      transform: translateY(-1px);
+    }
+
+    /* カスタムスクロールバー */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #141413;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2e2d2b;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="selection:bg-stone-500/30 selection:text-stone-100 antialiased">
+
+  <div class="matte-grain" aria-hidden="true"></div>
+
+  <!-- トースト通知 -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-200 -translate-y-2">
+    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-[#242321] border border-[#3a3835] shadow-lg">
+      <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+      <span id="toast-message" class="text-xs font-medium text-[#eae8e3]">リンクをコピーしました</span>
+    </div>
+  </div>
+
+  <!-- メインコンテナ -->
+  <div class="max-w-xl mx-auto px-5 pt-10 pb-16 sm:px-6 sm:pt-14">
+
+    <!-- ヘッダー -->
+    <header class="flex items-center justify-between gap-4 mb-10 pb-6 border-b border-[#262523]">
+      <div class="flex items-center gap-3.5">
+        <div class="w-10 h-10 rounded-full bg-[#22211f] border border-[#33312e] flex items-center justify-center text-[#d6d3cd] font-semibold text-sm tracking-tight">
+          AA
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-semibold tracking-tight text-[#f5f4f0]">
+            AQUA-AKULA
+          </h1>
+          <p class="text-xs text-[#9c9890] mt-0.5">
+            by sharkmikan — リンク・アーカイブ
+          </p>
+        </div>
+      </div>
+
+      <button onclick="triggerPortalShare()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1e1d1b] hover:bg-[#262522] border border-[#2f2e2b] hover:border-[#3e3c39] text-xs font-medium text-[#d6d3cd] transition active:scale-95">
+        <i data-lucide="share-2" class="w-3.5 h-3.5 text-[#9c9890]"></i>
+        <span>共有</span>
+      </button>
+    </header>
+
+    <!-- イントロ -->
+    <section class="mb-8">
+      <p class="text-sm text-[#a8a49c] leading-relaxed">
+        AQUA-AKULA シリーズの各バージョンへのリンクをまとめています。用途に合わせてそのまま開くか、URLのコピー・共有ができます。
+      </p>
+    </section>
+
+    <!-- リンクカード一覧 -->
+    <main>
+      <div id="cards-container" class="space-y-3.5">
+        <!-- JavaScriptでレンダリング -->
+      </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="mt-14 pt-6 border-t border-[#262523] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#78746c]">
+      <span>AQUA-AKULA — sharkmikan</span>
+      <button onclick="triggerPortalShare()" class="inline-flex items-center gap-1.5 text-[#9c9890] hover:text-[#eae8e3] transition">
+        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+        <span>このページを共有</span>
+      </button>
+    </footer>
+
+  </div>
+
+  <!-- 共有モーダル -->
+  <div id="share-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-[2px] transition-opacity duration-200" onclick="handleModalBackdropClick(event)">
+    <div class="relative w-full max-w-md rounded-2xl bg-[#1c1b1a] border border-[#32302d] shadow-2xl overflow-hidden">
+      <div class="p-5 sm:p-6">
+        <!-- モーダルヘッダー -->
+        <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-[#2b2a28]">
+          <h3 class="text-sm font-semibold text-[#f5f4f0]">
+            リンクを共有
+          </h3>
+          <button onclick="closeShareModal()" class="p-1.5 rounded-lg text-[#9c9890] hover:text-[#f5f4f0] hover:bg-[#272624] transition" aria-label="閉じる">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- 対象情報 -->
+        <div class="mb-4">
+          <span id="share-modal-badge" class="inline-block px-2.5 py-0.5 rounded-md bg-[#262523] text-[11px] font-medium text-[#c2beb6] mb-1.5">
+            LINK
+          </span>
+          <h4 id="share-modal-title" class="text-base font-semibold text-[#f5f4f0] mb-1">
+            AQUA-AKULA
+          </h4>
+          <p id="share-modal-desc" class="text-xs text-[#9c9890] line-clamp-2">
+            AQUA-AKULA シリーズの公式リンク一覧ページ。
+          </p>
+        </div>
+
+        <!-- QRコード -->
+        <div class="flex items-center gap-4 p-3.5 rounded-xl bg-[#151413] border border-[#292826] mb-4">
+          <div class="p-2 rounded-xl bg-[#f5f4f0] shrink-0">
+            <canvas id="share-qr-canvas" width="100" height="100" class="block w-[100px] h-[100px]"></canvas>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="text-xs font-semibold text-[#e5e2dc] mb-1">
+              QRコードで開く
+            </p>
+            <p class="text-[11px] text-[#9c9890] leading-relaxed mb-2.5">
+              スマートフォンのカメラで読み取るとそのままアクセスできます。
+            </p>
+            <button onclick="triggerNativeShareFromModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#252422] hover:bg-[#2e2d2a] border border-[#353330] text-[11px] font-medium text-[#d6d3cd] transition">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-[#9c9890]"></i>
+              <span>端末の共有メニューを開く</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- URLコピー欄 -->
+        <div class="mb-4">
+          <label class="block text-[11px] font-medium text-[#9c9890] mb-1.5">URL</label>
+          <div class="flex items-center gap-2">
+            <input id="share-modal-url" type="text" readonly class="flex-1 px-3 py-2 rounded-xl bg-[#151413] border border-[#2b2a28] font-mono-url text-xs text-[#d6d3cd] focus:outline-none" />
+            <button onclick="copyModalUrl()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#eae8e3] hover:bg-white text-[#141413] text-xs font-semibold transition shrink-0 active:scale-95">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>コピー</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SNS・テキスト共有 -->
+        <div class="grid grid-cols-3 gap-2">
+          <button onclick="shareToX()" class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#252422] hover:bg-[#2e2d2a] border border-[#32302d] text-xs font-medium text-[#e5e2dc] transition">
+            <span class="font-bold">𝕏</span>
+            <span>ポスト</span>
+          </button>
+          <button onclick="shareToLine()" class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#252422] hover:bg-[#2e2d2a] border border-[#32302d] text-xs font-medium text-emerald-400 transition">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+            <span>LINE</span>
+          </button>
+          <button onclick="copyShareSummary()" class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#252422] hover:bg-[#2e2d2a] border border-[#32302d] text-xs font-medium text-[#d6d3cd] transition">
+            <i data-lucide="file-text" class="w-3.5 h-3.5 text-[#9c9890]"></i>
+            <span>紹介文コピー</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // AQUA-AKULA リンク定義（指定順：2000 → V4 → V3 ULTRA → V3 → V2）
+    const LINK_ITEMS = [
+      {
+        id: 'akula-2000',
+        title: 'AQUA-AKULA 2000',
+        url: 'https://ws-ceo.github.io/aqua-akula-2000/',
+        badge: '最新・オフライン4言語辞書',
+        description: 'API不採用のオフライン動作モデル。日本語・英語・韓国語・中国語の4言語設定、辞書／学習ファイルの読込、学習データ・会話ログの書き出し、単語学習に対応。',
+        featured: true
+      },
+      {
+        id: 'akula-v4',
+        title: 'AQUA-AKULA V4',
+        url: 'https://ws-ceo.github.io/aqua-akula-V4/',
+        badge: 'V4・オフライン',
+        description: 'オフライン対応の第4世代モデル。コンテキスト理解とファジーソナーを搭載し、4言語辞書・学習データの読込／保存・会話ログ出力・ユーザー学習に対応。',
+        featured: false
+      },
+      {
+        id: 'akula-v3-ultra',
+        title: 'AQUA-AKULA V3 ULTRA',
+        url: 'https://ws-ceo.github.io/aqua-akula-V3ultra/',
+        badge: 'V3 ULTRA',
+        description: 'V3シリーズの最上位エディション。高い推論精度とマルチモーダル処理能力、強化された応答エンジンを搭載。',
+        featured: false
+      },
+      {
+        id: 'akula-v3',
+        title: 'AQUA-AKULA V3',
+        url: 'https://ws-ceo.github.io/aqua-akula-V3/',
+        badge: 'V3',
+        description: '第3世代の標準モデル。高速なレスポンスと洗練されたインターフェースを両立した主力バージョン。',
+        featured: false
+      },
+      {
+        id: 'akula-v2',
+        title: 'AQUA-AKULA V2',
+        url: 'https://ws-ceo.github.io/aqua-akula-V2/',
+        badge: 'V2',
+        description: '軽量・軽快に動作する第2世代モデル。安定した基本機能と軽快なアクセス性を備えたクラシックバージョン。',
+        featured: false
+      }
+    ];
+
+    const PORTAL_PUBLIC_URL = 'https://ws-ceo.github.io/aqua-akula/';
+    let currentShareTarget = {
+      title: 'AQUA-AKULA — リンク集',
+      url: PORTAL_PUBLIC_URL,
+      description: 'AQUA-AKULA シリーズ（2000 / V4 / V3 ULTRA / V3 / V2）の公式リンク一覧ページ。',
+      badge: '公式リンク一覧'
+    };
+
+    // 初期化
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+
+    // ESCキーでモーダルを閉じる
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeShareModal();
+      }
+    });
+
+    // カード一覧の描画
+    function renderCards() {
+      const container = document.getElementById('cards-container');
+      container.innerHTML = LINK_ITEMS.map((item) => {
+        const cardClass = item.featured ? 'link-card-latest' : 'link-card';
+        const badgeClass = item.featured
+          ? 'bg-[#2c2a27] text-[#eae8e3] border-[#45423d]'
+          : 'bg-[#242321] text-[#b5b0a8] border-[#32302d]';
+        const primaryBtnClass = item.featured
+          ? 'bg-[#eae8e3] hover:bg-white text-[#141413] font-semibold'
+          : 'bg-[#292825] hover:bg-[#33312e] border border-[#3a3834] text-[#f5f4f0] font-medium';
+
+        return `
+          <article class="${cardClass} p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <h2 class="text-base sm:text-[17px] font-semibold text-[#f5f4f0] tracking-tight">
+                ${escapeHTML(item.title)}
+              </h2>
+              <span class="px-2.5 py-0.5 rounded-md border text-[11px] font-medium shrink-0 ${badgeClass}">
+                ${escapeHTML(item.badge)}
+              </span>
+            </div>
+
+            <p class="text-xs sm:text-[13px] text-[#a8a49c] leading-relaxed mb-4">
+              ${escapeHTML(item.description)}
+            </p>
+
+            <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#151413] border border-[#272624] mb-4">
+              <i data-lucide="link-2" class="w-3.5 h-3.5 text-[#78746c] shrink-0"></i>
+              <span class="font-mono-url text-xs text-[#9c9890] truncate">${escapeHTML(item.url)}</span>
+            </div>
+
+            <div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+              <a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="${primaryBtnClass} w-full sm:w-auto sm:flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm transition active:scale-[0.99]">
+                <span>開く</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
+              <button onclick="copyItemUrl('${escapeAttr(item.url)}')" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-transparent hover:bg-[#252422] border border-[#2f2e2b] text-xs font-medium text-[#c2beb6] transition active:scale-95">
+                <i data-lucide="copy" class="w-3.5 h-3.5 text-[#8a867e]"></i>
+                <span>コピー</span>
+              </button>
+              <button onclick="shareItemById('${escapeAttr(item.id)}')" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-transparent hover:bg-[#252422] border border-[#2f2e2b] text-xs font-medium text-[#c2beb6] transition active:scale-95">
+                <i data-lucide="share-2" class="w-3.5 h-3.5 text-[#8a867e]"></i>
+                <span>共有</span>
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // URLコピー
+    function copyItemUrl(url) {
+      copyTextFallback(url, 'リンクをコピーしました');
+    }
+
+    function copyTextFallback(text, successMsg) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg);
+      } catch (err) {
+        showToast('コピーに失敗しました');
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // 個別リンクの共有
+    function shareItemById(id) {
+      const item = LINK_ITEMS.find(n => n.id === id);
+      if (!item) return;
+      initiateShare({
+        title: item.title,
+        url: item.url,
+        description: item.description,
+        badge: item.badge || 'LINK'
+      });
+    }
+
+    // ポータル全体の共有
+    function triggerPortalShare() {
+      initiateShare({
+        title: 'AQUA-AKULA — リンク集',
+        url: PORTAL_PUBLIC_URL,
+        description: 'AQUA-AKULA シリーズ（2000 / V4 / V3 ULTRA / V3 / V2）の公式リンク一覧ページ。',
+        badge: '公式リンク一覧'
+      });
+    }
+
+    // Web Share API または 共有モーダル起動
+    async function initiateShare(target) {
+      currentShareTarget = target;
+      const isMobileOrTouch = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      if (navigator.share && isMobileOrTouch) {
+        try {
+          await navigator.share({
+            title: target.title,
+            text: `${target.title} - ${target.description}`,
+            url: target.url
+          });
+          showToast('共有しました');
+          return;
+        } catch (err) {
+          if (err && err.name === 'AbortError') return;
+        }
+      }
+      openShareModal(target);
+    }
+
+    function openShareModal(target) {
+      currentShareTarget = target;
+      document.getElementById('share-modal-badge').textContent = target.badge;
+      document.getElementById('share-modal-title').textContent = target.title;
+      document.getElementById('share-modal-desc').textContent = target.description;
+      document.getElementById('share-modal-url').value = target.url;
+
+      renderLocalQRCode('share-qr-canvas', target.url);
+
+      const modal = document.getElementById('share-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    function closeShareModal() {
+      const modal = document.getElementById('share-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleModalBackdropClick(event) {
+      if (event.target.id === 'share-modal') {
+        closeShareModal();
+      }
+    }
+
+    async function triggerNativeShareFromModal() {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: currentShareTarget.title,
+            text: `${currentShareTarget.title} - ${currentShareTarget.description}`,
+            url: currentShareTarget.url
+          });
+          showToast('共有しました');
+        } catch (err) {
+          if (err && err.name !== 'AbortError') {
+            showToast('このブラウザでは端末の共有メニューを利用できません');
+          }
+        }
+      } else {
+        showToast('このブラウザでは端末の共有メニューを利用できません');
+      }
+    }
+
+    function copyModalUrl() {
+      copyTextFallback(currentShareTarget.url, 'URLをコピーしました');
+    }
+
+    function copyShareSummary() {
+      const summary = `${currentShareTarget.title}\n${currentShareTarget.description}\n${currentShareTarget.url}`;
+      copyTextFallback(summary, '紹介文とURLをコピーしました');
+    }
+
+    function shareToX() {
+      const text = encodeURIComponent(`${currentShareTarget.title}\n${currentShareTarget.description}\n`);
+      const url = encodeURIComponent(currentShareTarget.url);
+      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
+    }
+
+    function shareToLine() {
+      const url = encodeURIComponent(currentShareTarget.url);
+      window.open(`https://social-plugins.line.me/lineit/share?url=${url}`, '_blank', 'noopener,noreferrer');
+    }
+
+    // ローカルQRコード描画
+    function renderLocalQRCode(canvasId, text) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const matrix = buildQrMatrix(text);
+      const count = matrix.length;
+      const quiet = 2;
+      const total = count + quiet * 2;
+      const size = canvas.width;
+      const cell = size / total;
+
+      ctx.fillStyle = '#f5f4f0';
+      ctx.fillRect(0, 0, size, size);
+
+      ctx.fillStyle = '#141413';
+      for (let r = 0; r < count; r++) {
+        for (let c = 0; c < count; c++) {
+          if (matrix[r][c]) {
+            ctx.fillRect(
+              Math.floor((c + quiet) * cell),
+              Math.floor((r + quiet) * cell),
+              Math.ceil(cell),
+              Math.ceil(cell)
+            );
+          }
+        }
+      }
+    }
+
+    function buildQrMatrix(str) {
+      const encoder = new TextEncoder();
+      let bytes = Array.from(encoder.encode(str));
+      if (bytes.length > 53) bytes = bytes.slice(0, 53);
+
+      const size = 29;
+      const grid = Array.from({ length: size }, () => Array(size).fill(null));
+      const reserved = Array.from({ length: size }, () => Array(size).fill(false));
+
+      const placeFinder = (row, col) => {
+        for (let r = -1; r <= 7; r++) {
+          for (let c = -1; c <= 7; c++) {
+            const rr = row + r, cc = col + c;
+            if (rr < 0 || rr >= size || cc < 0 || cc >= size) continue;
+            const isDark = (r >= 0 && r <= 6 && c >= 0 && c <= 6) &&
+              (r === 0 || r === 6 || c === 0 || c === 6 || (r >= 2 && r <= 4 && c >= 2 && c <= 4));
+            grid[rr][cc] = isDark ? 1 : 0;
+            reserved[rr][cc] = true;
+          }
+        }
+      };
+
+      placeFinder(0, 0);
+      placeFinder(0, size - 7);
+      placeFinder(size - 7, 0);
+
+      for (let r = -2; r <= 2; r++) {
+        for (let c = -2; c <= 2; c++) {
+          const rr = 22 + r, cc = 22 + c;
+          const isDark = Math.abs(r) === 2 || Math.abs(c) === 2 || (r === 0 && c === 0);
+          grid[rr][cc] = isDark ? 1 : 0;
+          reserved[rr][cc] = true;
+        }
+      }
+
+      for (let i = 8; i < size - 8; i++) {
+        grid[6][i] = i % 2 === 0 ? 1 : 0;
+        reserved[6][i] = true;
+        grid[i][6] = i % 2 === 0 ? 1 : 0;
+        reserved[i][6] = true;
+      }
+
+      grid[size - 8][8] = 1;
+      reserved[size - 8][8] = true;
+      for (let i = 0; i < 9; i++) {
+        if (i !== 6) {
+          reserved[8][i] = true;
+          reserved[i][8] = true;
+        }
+      }
+      for (let i = 0; i < 8; i++) {
+        reserved[8][size - 1 - i] = true;
+        reserved[size - 1 - i][8] = true;
+      }
+
+      const bits = [];
+      const pushBits = (val, len) => {
+        for (let i = len - 1; i >= 0; i--) bits.push((val >>> i) & 1);
+      };
+      pushBits(0b0100, 4);
+      pushBits(bytes.length, 8);
+      bytes.forEach(b => pushBits(b, 8));
+      pushBits(0, Math.min(4, 440 - bits.length));
+      while (bits.length % 8 !== 0) bits.push(0);
+
+      const dataCodewords = [];
+      for (let i = 0; i < bits.length; i += 8) {
+        let byte = 0;
+        for (let j = 0; j < 8; j++) byte = (byte << 1) | bits[i + j];
+        dataCodewords.push(byte);
+      }
+      const padBytes = [0xec, 0x11];
+      let padIdx = 0;
+      while (dataCodewords.length < 55) {
+        dataCodewords.push(padBytes[padIdx % 2]);
+        padIdx++;
+      }
+
+      const eccCodewords = computeQrEcc(dataCodewords, 15);
+      const allCodewords = dataCodewords.concat(eccCodewords);
+      const allBits = [];
+      allCodewords.forEach(cw => {
+        for (let i = 7; i >= 0; i--) allBits.push((cw >>> i) & 1);
+      });
+
+      let bitIdx = 0;
+      let upward = true;
+      for (let col = size - 1; col > 0; col -= 2) {
+        if (col === 6) col--;
+        for (let i = 0; i < size; i++) {
+          const row = upward ? size - 1 - i : i;
+          for (let dx = 0; dx < 2; dx++) {
+            const c = col - dx;
+            if (!reserved[row][c]) {
+              const bit = bitIdx < allBits.length ? allBits[bitIdx++] : 0;
+              const mask = (row + c) % 2 === 0 ? 1 : 0;
+              grid[row][c] = bit ^ mask;
+            }
+          }
+        }
+        upward = !upward;
+      }
+
+      const fmt = 0x77c4;
+      for (let i = 0; i <= 5; i++) grid[8][i] = (fmt >>> (14 - i)) & 1;
+      grid[8][7] = (fmt >>> 8) & 1;
+      grid[8][8] = (fmt >>> 7) & 1;
+      grid[7][8] = (fmt >>> 6) & 1;
+      for (let i = 9; i <= 14; i++) grid[14 - i][8] = (fmt >>> (14 - i)) & 1;
+
+      for (let i = 0; i <= 7; i++) grid[size - 1 - i][8] = (fmt >>> i) & 1;
+      for (let i = 8; i <= 14; i++) grid[8][size - 15 + i] = (fmt >>> i) & 1;
+
+      return grid;
+    }
+
+    function computeQrEcc(data, eccLen) {
+      const gfExp = new Array(512);
+      const gfLog = new Array(256);
+      let x = 1;
+      for (let i = 0; i < 255; i++) {
+        gfExp[i] = x;
+        gfLog[x] = i;
+        x <<= 1;
+        if (x & 0x100) x ^= 0x11d;
+      }
+      for (let i = 255; i < 512; i++) gfExp[i] = gfExp[i - 255];
+
+      const gfMul = (a, b) => (a === 0 || b === 0) ? 0 : gfExp[gfLog[a] + gfLog[b]];
+
+      let gen = [1];
+      for (let i = 0; i < eccLen; i++) {
+        const next = new Array(gen.length + 1).fill(0);
+        const factor = gfExp[i];
+        for (let j = 0; j < gen.length; j++) {
+          next[j] ^= gen[j];
+          next[j + 1] ^= gfMul(gen[j], factor);
+        }
+        gen = next;
+      }
+
+      const res = data.concat(new Array(eccLen).fill(0));
+      for (let i = 0; i < data.length; i++) {
+        const coef = res[i];
+        if (coef !== 0) {
+          for (let j = 0; j < gen.length; j++) {
+            res[i + j] ^= gfMul(gen[j], coef);
+          }
+        }
+      }
+      return res.slice(data.length);
+    }
+
+    // トースト通知表示
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-message');
+      msgEl.textContent = msg;
+
+      toast.classList.remove('opacity-0', '-translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', '-translate-y-2');
+      }, 2200);
+    }
+
+    // XSSエスケープユーティリティ
+    function escapeHTML(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function escapeAttr(str) {
+      return escapeHTML(str).replace(/`/g, '&#96;');
+    }
+  </script>
+
+  <footer class="w-full text-center py-4 px-3 text-[11px] text-[#66635c]">
+    © sharkmikan — All rights reserved. All rights and authority to this work are owned by sharkmikan.
+  </footer>
+
+</body>
+</html>
