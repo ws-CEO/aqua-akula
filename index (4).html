@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQUA-AKULA // AI PORTAL NEXT</title>
+  <link rel="canonical" href="https://aquaakula.f5.si/" />
+  <meta property="og:title" content="AQUA-AKULA // AI PORTAL" />
+  <meta property="og:description" content="深海のごとき演算領域と高速推論を追求する「AQUA-AKULA」シリーズの統合アクセスゲートウェイ。" />
+  <meta property="og:url" content="https://aquaakula.f5.si/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Orbitron, Rajdhani, JetBrains Mono, Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Orbitron:wght@600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-abyss: #040711;
+      --neon-cyan: #00f3ff;
+      --neon-blue: #2979ff;
+      --neon-magenta: #ff007f;
+      --card-surface: rgba(9, 15, 32, 0.76);
+    }
+
+    body {
+      background-color: var(--bg-abyss);
+      color: #e2e8f0;
+      font-family: 'Noto Sans JP', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .font-rajdhani {
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .font-mono-tech {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* サイバーグリッド背景 */
+    .cyber-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background-image:
+        linear-gradient(to right, rgba(0, 243, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 243, 255, 0.055) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, #000 35%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, #000 35%, transparent 100%);
+      animation: gridDrift 28s linear infinite;
+    }
+
+    @keyframes gridDrift {
+      0% { background-position: 0 0; }
+      100% { background-position: 44px 44px; }
+    }
+
+    /* ディープシー・ソナーレーダー背景 */
+    .sonar-wrapper {
+      position: fixed;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 680px;
+      height: 680px;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    .sonar-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      border: 1px solid rgba(0, 243, 255, 0.14);
+    }
+
+    .sonar-ring-2 {
+      inset: 18%;
+      border-color: rgba(41, 121, 255, 0.16);
+      border-style: dashed;
+    }
+
+    .sonar-ring-3 {
+      inset: 36%;
+      border-color: rgba(0, 243, 255, 0.12);
+    }
+
+    .sonar-sweep {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: conic-gradient(from 0deg, rgba(0, 243, 255, 0.22) 0deg, rgba(0, 243, 255, 0.04) 45deg, transparent 95deg);
+      animation: radarSpin 8s linear infinite;
+    }
+
+    @keyframes radarSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 環境光のネオングロー */
+    .glow-orb-cyan {
+      position: fixed;
+      top: -15%;
+      left: -10%;
+      width: 480px;
+      height: 480px;
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(0, 243, 255, 0.16) 0%, transparent 70%);
+      filter: blur(65px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glow-orb-magenta {
+      position: fixed;
+      bottom: -15%;
+      right: -10%;
+      width: 520px;
+      height: 520px;
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(255, 0, 127, 0.15) 0%, transparent 70%);
+      filter: blur(75px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* タイトルのネオンシャドウ */
+    .title-cyber-glow {
+      text-shadow:
+        0 0 18px rgba(0, 243, 255, 0.55),
+        2px 0 0 rgba(255, 0, 127, 0.6),
+        -2px 0 0 rgba(0, 243, 255, 0.6);
+    }
+
+    /* HUDコーナーブラケット装飾 */
+    .hud-frame {
+      position: relative;
+    }
+    .hud-frame::before,
+    .hud-frame::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+    .hud-frame::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid var(--neon-cyan);
+      border-left: 2px solid var(--neon-cyan);
+      border-top-left-radius: 8px;
+    }
+    .hud-frame::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid var(--neon-cyan);
+      border-right: 2px solid var(--neon-cyan);
+      border-bottom-right-radius: 8px;
+    }
+
+    /* 通常バージョンカード (V2 / V3) */
+    .node-card {
+      background: var(--card-surface);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 243, 255, 0.18);
+      border-radius: 16px;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .node-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 243, 255, 0.65);
+      box-shadow: 0 12px 32px -8px rgba(0, 243, 255, 0.25), inset 0 0 18px rgba(0, 243, 255, 0.06);
+    }
+
+    /* フラッグシップ特別カード (V3 ULTRA) */
+    .flagship-wrapper {
+      position: relative;
+      border-radius: 18px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, #00f3ff 0%, #2979ff 45%, #ff007f 100%);
+      box-shadow:
+        0 0 32px -4px rgba(255, 0, 127, 0.35),
+        0 0 24px -6px rgba(0, 243, 255, 0.4);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+
+    .flagship-wrapper:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow:
+        0 0 44px -2px rgba(255, 0, 127, 0.52),
+        0 0 36px -4px rgba(0, 243, 255, 0.55);
+    }
+
+    .flagship-inner {
+      background: linear-gradient(155deg, rgba(13, 18, 38, 0.94) 0%, rgba(18, 10, 28, 0.96) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flagship-inner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+      transform: skewX(-20deg);
+      animation: sheenSweep 5.5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sheenSweep {
+      0%, 65% { left: -100%; }
+      100% { left: 180%; }
+    }
+
+    /* ボタンスタイル */
+    .btn-launch-standard {
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.16), rgba(41, 121, 255, 0.22));
+      border: 1px solid rgba(0, 243, 255, 0.55);
+      color: #00f3ff;
+      transition: all 0.2s ease;
+    }
+
+    .btn-launch-standard:hover {
+      background: #00f3ff;
+      color: #040711;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.55);
+    }
+
+    .btn-launch-flagship {
+      background: linear-gradient(135deg, #00f3ff 0%, #2979ff 50%, #ff007f 100%);
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 18px rgba(255, 0, 127, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .btn-launch-flagship:hover {
+      filter: brightness(1.12);
+      box-shadow: 0 6px 26px rgba(0, 243, 255, 0.55), 0 0 20px rgba(255, 0, 127, 0.5);
+    }
+
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #cbd5e1;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy:hover {
+      border-color: rgba(0, 243, 255, 0.5);
+      color: #00f3ff;
+      background: rgba(0, 243, 255, 0.08);
+    }
+
+    .btn-share {
+      background: rgba(255, 0, 127, 0.08);
+      border: 1px solid rgba(255, 0, 127, 0.38);
+      color: #ff77b7;
+      transition: all 0.2s ease;
+    }
+
+    .btn-share:hover {
+      border-color: #ff007f;
+      color: #ffffff;
+      background: rgba(255, 0, 127, 0.22);
+      box-shadow: 0 0 16px rgba(255, 0, 127, 0.35);
+    }
+
+    /* 共有モーダル用スキャンライン演出 */
+    .modal-scanlines {
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 243, 255, 0.03) 3px,
+        rgba(0, 243, 255, 0.03) 4px
+      );
+    }
+
+    /* カスタムスクロールバー */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #040711;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 243, 255, 0.35);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- 背景エフェクト群 -->
+  <div class="cyber-grid"></div>
+  <div class="glow-orb-cyan"></div>
+  <div class="glow-orb-magenta"></div>
+
+  <!-- ディープシー・ソナーレーダー装飾 -->
+  <div class="sonar-wrapper" aria-hidden="true">
+    <div class="sonar-ring"></div>
+    <div class="sonar-ring sonar-ring-2"></div>
+    <div class="sonar-ring sonar-ring-3"></div>
+    <div class="sonar-sweep"></div>
+  </div>
+
+  <!-- トースト通知 -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 -translate-y-3">
+    <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-[#070d1f]/95 border border-cyan-400/70 shadow-[0_0_24px_rgba(0,243,255,0.35)] backdrop-blur-md">
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+      <span id="toast-message" class="font-mono-tech text-xs font-semibold tracking-wider text-cyan-100">LINK COPIED TO CLIPBOARD</span>
+    </div>
+  </div>
+
+  <!-- メインコンテナ -->
+  <div class="max-w-2xl mx-auto px-4 pt-6 pb-20 sm:px-6 sm:pt-10">
+
+    <!-- トップHUDステータスバー -->
+    <header class="flex flex-wrap items-center justify-between gap-3 mb-9 pb-3 border-b border-cyan-500/15">
+      <div class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg bg-cyan-950/30 border border-cyan-400/25">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+        </span>
+        <span class="font-mono-tech text-xs font-bold tracking-widest text-emerald-300">SYSTEM: ONLINE</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="hidden sm:inline-block font-mono-tech text-[11px] text-slate-500 mr-1">SEC_ID // AKULA-HUB</span>
+        <button onclick="triggerPortalShare()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-500/10 hover:bg-pink-500/20 border border-pink-400/40 hover:border-pink-400 font-mono-tech text-xs text-pink-200 hover:text-white transition active:scale-95">
+          <i data-lucide="share-2" class="w-3.5 h-3.5 text-pink-400"></i>
+          <span>SHARE PORTAL</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ヒーローヘッダー -->
+    <section class="text-center mb-10 relative">
+      <!-- サブタイトルピル -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/35 mb-4">
+        <i data-lucide="cpu" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span class="font-rajdhani text-xs sm:text-sm font-bold tracking-[0.2em] text-cyan-300 uppercase">
+          NEXT-GEN AI ARCHITECTURE HUB
+        </span>
+      </div>
+
+      <!-- メインタイトル -->
+      <h1 class="font-orbitron text-3xl sm:text-5xl font-black tracking-wider text-white title-cyber-glow mb-3 leading-tight">
+        AQUA-AKULA <span class="text-cyan-400">//</span> AI PORTAL
+      </h1>
+
+      <!-- イントロテキスト -->
+      <p class="text-xs sm:text-sm text-slate-300/85 max-w-lg mx-auto leading-relaxed">
+        深海のごとき演算領域と高速推論を追求する「AQUA-AKULA」シリーズの統合アクセスゲートウェイ。AQUA-AKULAシリーズと外部AIを一元管理。検索・お気に入りに対応した統合AIゲートウェイ。
+      </p>
+
+      <!-- HUDテレメトリ装飾ライン -->
+      <div class="flex items-center justify-center gap-4 mt-5 font-mono-tech text-[10px] tracking-widest text-slate-500">
+        <span>PROTOCOL: HTTPS</span>
+        <span class="text-cyan-500/50">|</span>
+        <span id="active-nodes-indicator">NODES: 03 ACTIVE</span>
+        <span class="text-cyan-500/50">|</span>
+        <span>LATENCY: OPTIMAL</span>
+      </div>
+    </section>
+
+    <!-- バージョンカード一覧 -->
+    <main>
+      <section class="mb-6 rounded-2xl border border-cyan-400/20 bg-[#070d1f]/80 backdrop-blur-xl p-4 sm:p-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <p class="font-mono-tech text-[10px] tracking-[0.22em] text-cyan-400">CONTROL DECK // NODE MANAGER</p>
+            <h2 class="font-orbitron text-sm sm:text-base font-bold text-white mt-1">AI MODEL DIRECTORY</h2>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-2">
+          <input id="node-search" type="search" oninput="renderCards()" placeholder="モデル名・説明・URLを検索..."
+            class="min-w-0 rounded-xl bg-black/40 border border-cyan-400/20 px-3 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/70">
+          <select id="node-filter" onchange="renderCards()" class="rounded-xl bg-[#0b1428] border border-cyan-400/20 px-3 py-2.5 text-xs text-cyan-100">
+            <option value="all">ALL NODES</option><option value="aqua">AQUA-AKULA</option>
+          </select>
+          <button id="favorites-toggle" onclick="toggleFavorites()" class="btn-copy rounded-xl px-3 py-2.5 text-xs font-mono-tech">☆ FAVORITES</button>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-2 mt-3 text-[10px] font-mono-tech text-slate-500">
+          <span id="directory-count">0 NODES</span><span>LOCAL SAVE // BROWSER STORAGE</span>
+        </div>
+      </section>
+
+      <div id="cards-container" class="space-y-5">
+        <!-- JavaScriptで動的にレンダリング -->
+      </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="mt-14 pt-6 border-t border-white/[0.07] flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
+      <p class="font-mono-tech text-[11px] tracking-widest text-slate-500">
+        AQUA-AKULA AI ARCHITECTURE // <span class="text-cyan-400/80">WS-CEO</span>
+      </p>
+      <div class="flex items-center gap-4">
+        <button onclick="triggerPortalShare()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/[0.03] hover:bg-pink-500/15 border border-white/10 hover:border-pink-400/40 font-mono-tech text-[11px] text-slate-300 hover:text-pink-200 transition">
+          <i data-lucide="share-2" class="w-3 h-3 text-pink-400"></i>
+          <span>SHARE PORTAL</span>
+        </button>
+        <p class="font-mono-tech text-[10px] tracking-wider text-slate-600">
+          ALL SYSTEMS NOMINAL &copy; 2026
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- サイバーパンク共有モーダル (SHARE MODAL) -->
+  <div id="share-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-200" onclick="handleModalBackdropClick(event)">
+    <div class="relative w-full max-w-md rounded-2xl bg-[#070d1f]/95 border border-cyan-400/60 shadow-[0_0_50px_rgba(0,243,255,0.28),0_0_24px_rgba(255,0,127,0.2)] overflow-hidden hud-frame">
+      <!-- スキャンラインオーバーレイ -->
+      <div class="modal-scanlines absolute inset-0 pointer-events-none"></div>
+
+      <div class="relative p-5 sm:p-6">
+        <!-- モーダルヘッダー -->
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-cyan-500/20">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-pink-500 shadow-[0_0_8px_#ff007f]"></span>
+            <h3 class="font-orbitron text-xs sm:text-sm font-bold tracking-wider text-white">
+              TRANSMIT_NODE <span class="text-cyan-400">//</span> SHARE
+            </h3>
+          </div>
+          <button onclick="closeShareModal()" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition" aria-label="閉じる">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- 対象ノード情報 -->
+        <div class="mb-4">
+          <span id="share-modal-badge" class="inline-block px-2.5 py-0.5 rounded bg-cyan-500/15 border border-cyan-400/35 font-mono-tech text-[10px] font-bold tracking-widest text-cyan-300 mb-1.5">
+            TARGET_LINK
+          </span>
+          <h4 id="share-modal-title" class="font-orbitron text-lg font-black text-white leading-snug mb-1">
+            AQUA-AKULA // AI PORTAL
+          </h4>
+          <p id="share-modal-desc" class="text-xs text-slate-300/80 line-clamp-2">
+            深海のごとき演算領域と高速推論を追求する「AQUA-AKULA」シリーズの統合アクセスゲートウェイ。
+          </p>
+        </div>
+
+        <!-- ローカル生成QRコード & ステータス -->
+        <div class="flex items-center gap-4 p-3.5 rounded-xl bg-black/50 border border-cyan-400/25 mb-4">
+          <div class="p-2 rounded-xl bg-white shrink-0 shadow-[0_0_16px_rgba(0,243,255,0.3)]">
+            <canvas id="share-qr-canvas" width="108" height="108" class="block w-[108px] h-[108px]"></canvas>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="font-mono-tech text-[11px] font-bold text-cyan-300 tracking-wider mb-1">
+              OPTICAL_QR // READY
+            </p>
+            <p class="text-[11px] text-slate-400 leading-relaxed mb-2">
+              スマートフォン等のカメラでスキャンして直接アクセスできます。
+            </p>
+            <button onclick="triggerNativeShareFromModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-400/40 font-mono-tech text-[10px] font-semibold text-cyan-200 transition">
+              <i data-lucide="smartphone" class="w-3 h-3"></i>
+              <span>OS SHARE SHEET</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- URLコピー欄 -->
+        <div class="mb-4">
+          <label class="block font-mono-tech text-[10px] tracking-widest text-slate-400 mb-1.5">TARGET_ENDPOINT_URL</label>
+          <div class="flex items-center gap-2">
+            <input id="share-modal-url" type="text" readonly class="flex-1 px-3 py-2 rounded-xl bg-black/60 border border-white/15 font-mono-tech text-xs text-cyan-200 focus:outline-none" />
+            <button onclick="copyModalUrl()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-mono-tech text-xs font-bold transition shrink-0 active:scale-95">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>COPY LINK</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- クイックSNS・テキスト共有ボタン群 -->
+        <div>
+          <span class="block font-mono-tech text-[10px] tracking-widest text-slate-400 mb-2">QUICK_DISPATCH_CHANNELS</span>
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="shareToX()" class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.12] border border-white/15 hover:border-cyan-400/50 font-mono-tech text-xs font-semibold text-white transition">
+              <span class="font-bold text-cyan-300">𝕏</span>
+              <span>POST</span>
+            </button>
+            <button onclick="shareToLine()" class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-400/35 hover:border-emerald-400 font-mono-tech text-xs font-semibold text-emerald-300 transition">
+              <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+              <span>LINE</span>
+            </button>
+            <button onclick="copyShareSummary()" class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-pink-500/10 hover:bg-pink-500/20 border border-pink-400/35 hover:border-pink-400 font-mono-tech text-xs font-semibold text-pink-200 transition">
+              <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+              <span>TEXT COPY</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // デフォルトのAQUA-AKULAノード定義
+    const DEFAULT_NODES = [
+      {
+        id: 'akula-v3-ultra',
+        title: 'AQUA-AKULA V3 ULTRA',
+        url: 'https://ws-ceo.github.io/aqua-akula-V3ultra/',
+        badge: 'FLAGSHIP // ULTRA',
+        description: 'シリーズ最高峰のフラッグシップモデル。圧倒的な推論精度、マルチモーダル処理能力、極限までチューニングされた応答エンジンを搭載。',
+        featured: true,
+        tierCode: 'TIER-01 // MAXIMUM_OUTPUT'
+      },
+      {
+        id: 'akula-v3',
+        title: 'AQUA-AKULA V3',
+        url: 'https://ws-ceo.github.io/aqua-akula-V3/',
+        badge: 'NEXT-GEN // V3',
+        description: '次世代アーキテクチャへと刷新された第3世代モデル。高速なレスポンスと洗練されたインターフェースを両立した標準主力バージョン。',
+        featured: false,
+        tierCode: 'TIER-02 // CORE_ENGINE'
+      },
+      {
+        id: 'akula-v2',
+        title: 'AQUA-AKULA V2',
+        url: 'https://ws-ceo.github.io/aqua-akula-V2/',
+        badge: 'STABLE // V2',
+        description: '軽量・軽快に動作する第2世代アーキテクチャ。安定した基本機能と軽快なアクセス性を備えたクラシック・スタンダードモデル。',
+        featured: false,
+        tierCode: 'TIER-03 // LEGACY_STABLE'
+      },
+      {
+        id: 'akula-v4',
+        title: 'AQUA-AKULA V4',
+        url: 'https://ws-ceo.github.io/aqua-akula-V4/',
+        badge: 'CONTEXT & FUZZY SONAR // V4',
+        description: 'オフライン対応の第4世代モデル。コンテキスト理解とファジーソナーを搭載し、4言語辞書・学習データの読込／保存・会話ログ出力・ユーザー学習に対応。',
+        featured: false,
+        tierCode: 'TIER-04 // OFFLINE_ENGINE'
+      },
+      {
+        id: 'akula-2000',
+        title: 'AQUA-AKULA 2000',
+        url: 'https://ws-ceo.github.io/aqua-akula-2000/',
+        badge: '4-LANGUAGE DICTIONARY // OFFLINE',
+        description: 'API不採用のオフライン動作モデル。日本語・英語・韓国語・中国語の4言語設定、辞書／学習ファイルの読込、学習データ・会話ログの書き出し、サメへの単語学習に対応。',
+        featured: false,
+        tierCode: 'TIER-05 // OFFLINE_DICTIONARY'
+      }, () => Array(size).fill(null));
+      const reserved = Array.from({ length: size }, () => Array(size).fill(false));
+
+      const placeFinder = (row, col) => {
+        for (let r = -1; r <= 7; r++) {
+          for (let c = -1; c <= 7; c++) {
+            const rr = row + r, cc = col + c;
+            if (rr < 0 || rr >= size || cc < 0 || cc >= size) continue;
+            const isDark = (r >= 0 && r <= 6 && c >= 0 && c <= 6) &&
+              (r === 0 || r === 6 || c === 0 || c === 6 || (r >= 2 && r <= 4 && c >= 2 && c <= 4));
+            grid[rr][cc] = isDark ? 1 : 0;
+            reserved[rr][cc] = true;
+          }
+        }
+      };
+
+      placeFinder(0, 0);
+      placeFinder(0, size - 7);
+      placeFinder(size - 7, 0);
+
+      for (let r = -2; r <= 2; r++) {
+        for (let c = -2; c <= 2; c++) {
+          const rr = 22 + r, cc = 22 + c;
+          const isDark = Math.abs(r) === 2 || Math.abs(c) === 2 || (r === 0 && c === 0);
+          grid[rr][cc] = isDark ? 1 : 0;
+          reserved[rr][cc] = true;
+        }
+      }
+
+      for (let i = 8; i < size - 8; i++) {
+        grid[6][i] = i % 2 === 0 ? 1 : 0;
+        reserved[6][i] = true;
+        grid[i][6] = i % 2 === 0 ? 1 : 0;
+        reserved[i][6] = true;
+      }
+
+      grid[size - 8][8] = 1;
+      reserved[size - 8][8] = true;
+      for (let i = 0; i < 9; i++) {
+        if (i !== 6) {
+          reserved[8][i] = true;
+          reserved[i][8] = true;
+        }
+      }
+      for (let i = 0; i < 8; i++) {
+        reserved[8][size - 1 - i] = true;
+        reserved[size - 1 - i][8] = true;
+      }
+
+      const bits = [];
+      const pushBits = (val, len) => {
+        for (let i = len - 1; i >= 0; i--) bits.push((val >>> i) & 1);
+      };
+      pushBits(0b0100, 4);
+      pushBits(bytes.length, 8);
+      bytes.forEach(b => pushBits(b, 8));
+      pushBits(0, Math.min(4, 440 - bits.length));
+      while (bits.length % 8 !== 0) bits.push(0);
+
+      const dataCodewords = [];
+      for (let i = 0; i < bits.length; i += 8) {
+        let byte = 0;
+        for (let j = 0; j < 8; j++) byte = (byte << 1) | bits[i + j];
+        dataCodewords.push(byte);
+      }
+      const padBytes = [0xec, 0x11];
+      let padIdx = 0;
+      while (dataCodewords.length < 55) {
+        dataCodewords.push(padBytes[padIdx % 2]);
+        padIdx++;
+      }
+
+      const eccCodewords = computeQrEcc(dataCodewords, 15);
+      const allCodewords = dataCodewords.concat(eccCodewords);
+      const allBits = [];
+      allCodewords.forEach(cw => {
+        for (let i = 7; i >= 0; i--) allBits.push((cw >>> i) & 1);
+      });
+
+      let bitIdx = 0;
+      let upward = true;
+      for (let col = size - 1; col > 0; col -= 2) {
+        if (col === 6) col--;
+        for (let i = 0; i < size; i++) {
+          const row = upward ? size - 1 - i : i;
+          for (let dx = 0; dx < 2; dx++) {
+            const c = col - dx;
+            if (!reserved[row][c]) {
+              const bit = bitIdx < allBits.length ? allBits[bitIdx++] : 0;
+              const mask = (row + c) % 2 === 0 ? 1 : 0;
+              grid[row][c] = bit ^ mask;
+            }
+          }
+        }
+        upward = !upward;
+      }
+
+      const fmt = 0x77c4;
+      for (let i = 0; i <= 5; i++) grid[8][i] = (fmt >>> (14 - i)) & 1;
+      grid[8][7] = (fmt >>> 8) & 1;
+      grid[8][8] = (fmt >>> 7) & 1;
+      grid[7][8] = (fmt >>> 6) & 1;
+      for (let i = 9; i <= 14; i++) grid[14 - i][8] = (fmt >>> (14 - i)) & 1;
+
+      for (let i = 0; i <= 7; i++) grid[size - 1 - i][8] = (fmt >>> i) & 1;
+      for (let i = 8; i <= 14; i++) grid[8][size - 15 + i] = (fmt >>> i) & 1;
+
+      return grid;
+    }
+
+    function computeQrEcc(data, eccLen) {
+      const gfExp = new Array(512);
+      const gfLog = new Array(256);
+      let x = 1;
+      for (let i = 0; i < 255; i++) {
+        gfExp[i] = x;
+        gfLog[x] = i;
+        x <<= 1;
+        if (x & 0x100) x ^= 0x11d;
+      }
+      for (let i = 255; i < 512; i++) gfExp[i] = gfExp[i - 255];
+
+      const gfMul = (a, b) => (a === 0 || b === 0) ? 0 : gfExp[gfLog[a] + gfLog[b]];
+
+      let gen = [1];
+      for (let i = 0; i < eccLen; i++) {
+        const next = new Array(gen.length + 1).fill(0);
+        const factor = gfExp[i];
+        for (let j = 0; j < gen.length; j++) {
+          next[j] ^= gen[j];
+          next[j + 1] ^= gfMul(gen[j], factor);
+        }
+        gen = next;
+      }
+
+      const res = data.concat(new Array(eccLen).fill(0));
+      for (let i = 0; i < data.length; i++) {
+        const coef = res[i];
+        if (coef !== 0) {
+          for (let j = 0; j < gen.length; j++) {
+            res[i + j] ^= gfMul(gen[j], coef);
+          }
+        }
+      }
+      return res.slice(data.length);
+    }
+
+    // トースト通知表示
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-message');
+      msgEl.textContent = msg;
+
+      toast.classList.remove('opacity-0', '-translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', '-translate-y-3');
+      }, 2400);
+    }
+
+    // XSSエスケープユーティリティ
+    function escapeHTML(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function escapeAttr(str) {
+      return escapeHTML(str).replace(/`/g, '&#96;');
+    }
+  </script>
+
+    <footer class="w-full text-center py-4 px-3 text-[10px] sm:text-xs text-cyan-200/40 font-mono-tech tracking-wide">
+      © sharkmikan — All rights reserved. All rights and authority to this work are owned by sharkmikan.
+    </footer>
+
+</body>
+</html>
